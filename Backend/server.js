@@ -1,36 +1,38 @@
-require('dotenv').config()
+require('dotenv').config();
 
-const express = require('express')
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const workoutRoutes = require('./routes/workouts'); // Adjusted to correct relative path
 
-const mongoose = require('mongoose')
-const workoutRoutes = require('../Backend/routes/workouts')
+// CORS options
+const corsOptions = {
+    origin: 'http://127.0.0.1:5500', // Add your client's URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+    credentials: true // Include credentials if needed
+};
 
-//express app
-const app = express()
+// Express app
+const app = express();
 
-//middleware
-app.use(express.json())
+// Middleware
+app.use(express.json()); // Parse incoming JSON requests
+app.use(cors(corsOptions)); // Enable CORS with specified options
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.path}`);
+    next();
+});
 
-app.use((req, res, next) =>{
-    console.log(req.path, req.method)
-    next()
-})
+// Routes
+app.use('/api/workouts', workoutRoutes);
 
-
-//routes
-app.use('/api/workouts', workoutRoutes)
-
-
-//connect to db
-mongoose.connect(process.env.MONGO_URI)
-    .then(() =>{
-        app.listen(process.env.PORT, () => {
-            console.log('Listening in port', process.env.PORT)
-        })
+// Connect to the database and start the server
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }) // Ensure proper MongoDB connection options
+    .then(() => {
+        app.listen(process.env.PORT || 4000, () => { // Default to 4000 if PORT is not set
+            console.log(`Connected to DB and listening on port ${process.env.PORT || 4000}`);
+        });
     })
-    .catch((error) =>{
-        console.log(error)
-    })
-
-
-
+    .catch((error) => {
+        console.error('Database connection error:', error);
+    });
