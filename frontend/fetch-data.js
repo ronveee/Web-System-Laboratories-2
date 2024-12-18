@@ -109,7 +109,7 @@ document.getElementById('editWorkoutForm').onsubmit = async (e) => {
     };
 
     try {
-        const response = await fetch(`http://localhost:3000/api/workouts/${updatedWorkout.title}`, {
+        const response = await fetch(`http://localhost:4000/api/workouts/${updatedWorkout.title}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updatedWorkout),
@@ -147,10 +147,10 @@ document.getElementById('editWorkoutForm').onsubmit = async (e) => {
 const confirmDelete = (title) => {
     Swal.fire({
         title: "Are you sure?",
-        text: "This action will permanently delete the workout!",
+        text: "This action will delete the workout!",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: "Yes, delete it!",
+        confirmButtonText: "Yes, delete",
         cancelButtonText: "Cancel",
     }).then(async (result) => {
         if (result.isConfirmed) {

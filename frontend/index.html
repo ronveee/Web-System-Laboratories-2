@@ -15,15 +15,16 @@
   
 
     <main class="main-content">
-        <h1 class="mb-5 ">Workout Activity</h1>
+        <h1 class="mb-5 ">Workout Activity 4</h1>
+        </div>
+        <div class="mb-3 container d-flex justify-content-end  ">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addWorkoutModal">
+                <i class="bi bi-plus"></i> Add Workout
+            </button>
         </div>
         <div class="container d-flex justify-content-center ">
-            <table>
-                <div class="add-bread mb-3   ">
-                    <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#addWorkoutModal">
-                        <i class="bi bi-plus-circle"></i> Add Workout
-                    </button>
-                </div>
+            <table class="table table-striped">
+                
                 <thead>
                     <tr>
                         <th scope="col">No.</th>
@@ -39,6 +40,7 @@
             </table>
         </div>
     </main>
+    
 
     <!-- Add Workout Modal -->
     <div class="modal fade" id="addWorkoutModal" tabindex="-1" aria-labelledby="addWorkoutLabel" aria-hidden="true">
@@ -62,7 +64,7 @@
                             <label for="workoutLoad" class="form-label">Load</label>
                             <input type="number" class="form-control" id="workoutLoad" required>
                         </div>
-                        <button type="submit" class="btn btn-success" value="submit">Add Workout</button>
+                        <button type="submit" class="btn btn-primary" value="submit">Add Workout</button>
                     </form>
                 </div>
             </div>
@@ -91,7 +93,7 @@
                             <label for="editWorkoutLoad" class="form-label">Load</label>
                             <input type="number" class="form-control" id="editWorkoutLoad" required>
                         </div>
-                        <button type="submit" class="btn btn-primary" value="submit">Save Changes</button>
+                        <button type="submit" class="btn btn-primary" value="submit">Update Workout</button>
                     </form>
                 </div>
             </div>
